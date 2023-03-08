@@ -1,0 +1,49 @@
+version: '3'
+
+volumes:
+  production_postgres_data: {}
+  production_postgres_data_backups: {}
+
+services:
+  django:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/production/django/Dockerfile
+    image: navoica_enroll_production_django
+    depends_on:
+      - postgres
+      - redis
+    env_file:
+      - .envs/.production/.django
+      - .envs/.production/.postgres
+    volumes:
+      - ./external_static:/app/external_static
+    command: /start
+  postgres:
+    restart: always
+    build:
+      context: .
+      dockerfile: ./compose/production/postgres/Dockerfile
+    image: navoica_enroll_production_postgres
+    volumes:
+      - production_postgres_data:/var/lib/postgresql/data
+      - production_postgres_data_backups:/backups
+    env_file:
+      - .envs/.production/.postgres
+  nginx:
+    restart: always
+    build:
+      context: ./compose/production/nginx
+    ports:
+      - 8089:80/tcp
+    environment:
+      ENVSUBST_VARS: DOMAIN
+    env_file:
+      - .envs/.production/.django
+    depends_on:
+      - django
+  redis:
+    image: redis:5.0
+
+

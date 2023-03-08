@@ -1,0 +1,12 @@
+# General
+# ------------------------------------------------------------------------------
+USE_DOCKER=yes
+IPYTHONDIR=/app/.ipython
+NAVOICA_URL=https://draft.navoica.pl
+DOMAIN=enroll.navoica.pl
+FORM_ORGANIZER_NAME=Uniwersytet Kardynała Stefana Wyszyńskiego w Warszawie
+
+#STATEMENT1_PDF=
+#STATEMENT2_PDF=
+#STATEMENT1_EN_PDF=
+#STATEMENT2_EN_PDF=

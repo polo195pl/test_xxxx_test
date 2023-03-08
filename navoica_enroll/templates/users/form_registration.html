@@ -1,0 +1,94 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags  i18n %}
+
+{% block title %}{% trans "Register for a course: " %}
+  {{ course_info.name }}{% endblock %}
+
+{% block content %}
+  <div id="student-form" class="pt-2">
+    <h1 class="register-course__title">{% trans "Register for a course: " %}</h1>
+    <h2 class="register-course__subtitle mb-3">{{ course_info.name }}</h2>
+
+    <p>{% trans "Filling in this form is a prerequisite for taking the course. <strong>The mandatory fields are marked with an asterisk.</strong> After submitting the form, you will be registered for the course." %}</p>
+
+    <p class="mb-5 mb-0 left_colored_border">{% trans "The course is funded by the European Union and the Polish state budget. The conditions of funding oblige the university, the organizer of the course, to collect data about the participants. Personal data from the registration form, will be collected, processed and verified by the course organizer. Filling in the form is a prerequisite to join the course." %}<br/>
+      {% trans "More information" %}: <a href="#" data-toggle="modal" data-target="#modal-video"
+                                         class="text-semi-bold">{% trans "Why is the collection of user data necessary?" %}</a>
+    </p>
+
+    <!--<p>{% trans "To participate in the course, fill in the registration form below with your details (mandatory fields have been marked with an asterisk). The information provided should be complete and consistent with the facts. Then accept the participant's statement and agree to the processing of personal data in order to participate in the project. After submitting the form, you will be registered for the course. Participation in the course is free." %}</p>-->
+
+    <div class="modal fade" id="modal-video" tabindex="-1" role="dialog" aria-labelledby="modal-video-title"
+         aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h5 class="modal-title modal__title"
+                id="modal-video-title">{% trans "Why is the collection of user data necessary?" %}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div class="modal-body">
+            <p class="pt-3 pb-4 modal__description">{% trans "The course is funded by the European Union and the Polish state budget. The conditions of funding oblige the university, the organizer of the course, to collect data about the participants. Personal data from the registration form, will be collected, processed and verified by the course organizer. Filling in the form is a prerequisite to join the course." %}</p>
+            <div class="embed-responsive embed-responsive-16by9">
+              <iframe class="embed-responsive-item" width="560" height="315"
+                      src="https://www.youtube.com/embed/MqTwgAAHJhI" frameborder="0"
+                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                      allowfullscreen></iframe>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="alert-message-error js-show-register-alert d-none" role="alert">
+      <strong>{% trans 'The form contains errors' %}.</strong> {% trans 'Correct or complete the missing information' %}.
+    </div>
+    <div class="js-register-form">{% crispy form %}</div>
+  </div>
+{% endblock %}
+
+{% block javascript %}
+  <script>
+    let statusOptions = {{ statuses_options_json|safe }};
+    let statusOptionsDefault = "{% trans 'Select...'%}";
+
+    document.addEventListener("DOMContentLoaded", loadTranslationsJS);
+
+    function loadTranslationsJS() {
+      let countyInput = document.getElementById("id_county");
+      let voivodeshipInput = document.getElementById("id_voivodeship");
+      let statusJobInput = document.getElementById("id_status");
+      let jobProfessionInput = document.getElementById("id_profession");
+
+      countyInput[0].textContent = "{% trans 'Select...'%}";
+      voivodeshipInput[0].textContent = "{% trans 'Select...'%}";
+      statusJobInput.options[0] = new Option("{% trans 'Select...'%}", "");
+      statusJobInput.options[0].setAttribute("selected", "true");
+      jobProfessionInput.options[0] = new Option("{% trans 'Select...'%}", "");
+      jobProfessionInput.options[0].setAttribute("selected", "true");
+
+
+      window.validationTranslates = {
+        "error_message_required": "{% trans 'Field required' %}",
+        "error_message_100_char_required": "{% trans 'The field can contain up to 100 characters' %}",
+        "error_message_300_char_required": "{% trans 'Max. 300 characters' %}",
+        "error_message_1000_char_required": "{% trans 'Max. 1000 characters' %}",
+        "error_message_30_char_required": "{% trans 'Max. 30 characters' %}",
+        "error_message_10_char_required": "{% trans 'Max. 10 characters' %}",
+        "error_message_12_char_required": "{% trans 'Max. 12 characters' %}",
+        "error_message_6_char_required": "{% trans 'Max. 6 characters' %}",
+        "error_message_8_min_char_required": "{% trans 'Min. 8 characters' %}",
+        "error_message_age": "{% trans 'Incorrect age' %}",
+        "error_message_pesel": "{% trans 'Incorrect PESEL number' %}",
+        "error_message_email": "{% trans 'Incorrect e-mail address' %}",
+        "error_message_radio_field": "{% trans 'The answer is obligatory' %}",
+        "error_message_accept_field_required": "{% trans 'The acceptance of the declaration is obligatory' %}",
+        "error_message_approve_field_required": "{% trans 'The consent is mandatory' %}",
+        "error_message_phone": "{% trans 'Provide the contact telephone number' %}"
+      }
+    }
+  </script>
+
+{% endblock %}

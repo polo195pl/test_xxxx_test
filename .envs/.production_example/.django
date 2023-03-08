@@ -1,0 +1,49 @@
+# General
+# ------------------------------------------------------------------------------
+# DJANGO_READ_DOT_ENV_FILE=True
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_SECRET_KEY=__DJANGO_SECRET_KEY__
+DJANGO_ADMIN_URL=admin/
+DJANGO_ALLOWED_HOSTS=__DOMAIN__
+DOMAIN=__DOMAIN__
+NAVOICA_URL=https://navoica.pl
+CERTBOT_EMAIL=__EMAIL__
+EMAIL=__EMAIL__
+ALLOW_MULTIPLE_REGISTRATION=False
+
+#STATEMENT1_PDF=
+#STATEMENT2_PDF=
+#STATEMENT1_EN_PDF=
+#STATEMENT2_EN_PDF=
+
+# Security
+# ------------------------------------------------------------------------------
+# TIP: better off using DNS, however, redirect is OK too
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# Email
+# ------------------------------------------------------------------------------
+MAILGUN_API_KEY=
+DJANGO_SERVER_EMAIL=
+MAILGUN_DOMAIN=
+
+# django-compressor
+# ------------------------------------------------------------------------------
+COMPRESS_ENABLED=
+
+# Gunicorn
+# ------------------------------------------------------------------------------
+WEB_CONCURRENCY=4
+
+# Sentry
+# ------------------------------------------------------------------------------
+SENTRY_DSN=https://3ec2192965104f3da05de5c0f1967e07@sentry.navoica.pl/13
+
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Form Name
+FORM_ORGANIZER_NAME=
+

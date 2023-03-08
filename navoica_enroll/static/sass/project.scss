@@ -1,0 +1,707 @@
+@import 'custom_bootstrap_vars';
+
+// project specific CSS goes here
+
+////////////////////////////////
+//Variables//
+////////////////////////////////
+
+// Alert colors
+
+$white: #FFFFFF;
+$mint-green: #D6E9C6;
+$black: #000000;
+$pink: #F2DEDE;
+$dark-pink: #EED3D7;
+$red: #B94A48;
+
+body {
+  background-color: #F8F9FA;
+  font-family: 'Open Sans', sans-serif;
+}
+
+////////////////////////////////
+//Alerts//
+////////////////////////////////
+
+// bootstrap alert CSS, translated to the django-standard levels of
+// debug, info, success, warning, error
+
+.alert-debug {
+  background-color: $white;
+  border-color: $mint-green;
+  color: $black;
+}
+
+.alert-error {
+  background-color: $pink;
+  border-color: $dark-pink;
+  color: $red;
+}
+
+.alert-success {
+  background-color: #E3F0F0;
+  border-color: #E3F0F0;
+  color: #008080;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 1rem;
+  line-height: 1.5rem;
+  font-weight: 600;
+  border-radius: 0;
+}
+
+.alert-message-error {
+  font-size: 1rem;
+  line-height: 1.5rem;
+  color: #E41D37;
+  font-family: 'Open Sans', sans-serif;
+  padding: 22px 30px;
+  background-color: #FDEDEF;
+  box-shadow: 0 3px 6px #00000029;
+
+  @media screen and (max-width: 767px) {
+    padding: 22px 15px;
+  }
+}
+
+.alert {
+  padding: 1.25rem 1.0625rem;
+}
+
+.alert .close {
+  opacity: 1;
+  color: #008080;
+}
+
+////////////////////////////////
+//Custom//
+////////////////////////////////
+.register-course {
+  &__header {
+    top: 0;
+    min-height: 5.5rem;
+    width: 100%;
+    background-color: #FFFFFF;
+    box-shadow: 0 4px 12px #DEE2E6;
+
+    & .header__course {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+
+      &-owner-name {
+        color: #5B5B5B;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: normal;
+        font-size: 1rem;
+        line-height: 1.625rem;
+
+        @media screen and (max-width: 767px) {
+          font-size: .8rem;
+          line-height: 1.125rem;
+        }
+      }
+
+      &-title {
+        color: #212529;
+        font-family: 'Open Sans', sans-serif;
+        font-weight: bold;
+        font-size: 1.625rem;
+        line-height: 1.625rem;
+
+        @media screen and (max-width: 767px) {
+          font-size: 1.125rem;
+          line-height: 1.125rem;
+        }
+      }
+    }
+  }
+
+  &__title {
+    font: normal normal normal 1.125rem/2.25rem Open Sans;
+    color: #212529;
+  }
+
+  &__subtitle {
+    font: normal normal 600 1.625rem/2.25rem Open Sans;
+    color: #212529;
+  }
+
+  &__input-container {
+    margin-bottom: 40px;
+  }
+}
+
+.dropdown__language {
+  font-size: 1rem;
+  line-height: 1.375rem;
+  font-family: 'Open Sans', sans-serif;
+  color: #212529;
+
+  &.show .dropdown-toggle {
+    border-left-color: #D1D6DC;
+    border-right-color: #D1D6DC;
+    border-top-color: #D1D6DC;
+  }
+
+  .dropdown-menu {
+    min-width: 100%;
+    padding: 0;
+    border-radius: 0;
+    margin-top: -3px;
+    border-top-color: transparent;
+    border-left-color: #D1D6DC;
+    border-right-color: #D1D6DC;
+    border-bottom-color: #D1D6DC;
+  }
+
+  .dropdown-toggle {
+    padding: .375rem 1rem;
+  }
+
+  .btn {
+    border-radius: 0;
+  }
+
+  .btn.focus,
+  .btn:focus {
+    border: 1px solid #D1D6DC;
+    box-shadow: none;
+  }
+  .dropdown-item.active,
+  .dropdown-item:active {
+    background-color: #D1D6DC;
+    color: #212529;
+    outline: none;
+  }
+  .dropdown-item:focus,
+  .dropdown-item:hover {
+    background-color: #D1D6DC;
+    color: #212529;
+    outline: none;
+  }
+
+  .fa {
+    color: #5B5B5B;
+  }
+
+  .dropdown-item {
+    padding: .69rem .8rem;
+    text-transform: capitalize;
+  }
+}
+
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  /* display: none; <- Crashes Chrome on hover */
+  appearance: none;
+  margin: 0; /* <-- Apparently some margin are still there even though it's hidden */
+}
+
+input[type='number'] {
+  appearance: textfield; /* Firefox */
+}
+
+.form-control {
+  border-radius: 0;
+  border: 1px solid #5B5B5B;
+  color: #212529;
+}
+
+.form-control:disabled {
+  opacity: .4;
+}
+
+.custom-checkbox .custom-control-label {
+  padding-left: .25rem;
+}
+
+.custom-control-input:checked ~ .custom-control-label:after {
+  border: 1px solid #008080;
+  background-color: #008080;
+}
+
+.custom-checkbox .custom-control-label:before {
+  border-radius: 0;
+}
+
+.custom-checkbox .custom-control-label:hover:before {
+  border-radius: 50%;
+  position: absolute;
+  content: '';
+  top: 0;
+  left: 0;
+  height: 38px;
+  width: 38px;
+  transform: translate(-92%, -20%);
+  background-color: #F4F4F4;
+  border: 0 solid transparent;
+}
+
+.custom-control-input:focus:not(:checked) ~ .custom-control-label:after {
+  color: #495057;
+  background-color: #FFFFFF;
+  border-color: #495057;
+  outline: 0;
+  box-shadow: 0 0 0 .2rem rgba(91, 91, 91, .1);
+}
+
+.custom-control-label:after {
+  border: 1px solid #5B5B5B;
+  background-color: #FFFFFF;
+}
+
+.custom-checkbox .custom-control-input:checked ~ .custom-control-label:after {
+  background-size: 9px;
+}
+
+.custom-control-input:focus ~ .custom-control-label:before {
+  box-shadow: 0 0 0 0 transparent;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.custom-control-input:not(:disabled):active ~ .custom-control-label:before {
+  box-shadow: 0 0 0 0 transparent;
+  border-color: transparent;
+  background-color: transparent;
+}
+
+.w-90 {
+  width: 90%;
+}
+
+.w-67 {
+  width: 67%;
+
+  @media screen and (max-width: 767px) {
+    width: 74%;
+  }
+}
+
+hr {
+  border-top: 1px solid #D1D6DC;
+  margin-top: 15px;
+  margin-bottom: 0;
+}
+
+hr.pb-40 {
+  padding-bottom: 2.5rem;
+
+  @media screen and (max-width: 767px) {
+    padding-bottom: 1.875rem;
+  }
+}
+
+hr.pb-30 {
+  padding-bottom: 1.875rem;
+}
+
+.partners-logo {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  @media screen and (max-width: 767px) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  & img {
+    @media screen and (min-width: 320px) and (max-width: 991px) {
+      max-width: 200px;
+      height: auto;
+    }
+  }
+}
+
+.modal {
+  &__title {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: bold;
+    font-size: 1.125rem;
+    line-height: 1.875rem;
+    color: #212529;
+  }
+
+  &__description {
+    font-family: 'Open Sans', sans-serif;
+    font-weight: normal;
+    font-size: 1rem;
+    line-height: 1.5rem;
+    color: #212529;
+  }
+  .close {
+    opacity: 1;
+    color: #212529;
+  }
+}
+
+.modal-content {
+  padding: 1.875rem;
+}
+
+.modal-header {
+  padding: 0 0 15px 0;
+}
+
+.modal-body {
+  padding: 0;
+}
+
+@media (min-width: 768px) {
+  .modal-dialog {
+    max-width: 752px;
+  }
+}
+
+.text-semi-bold {
+  font-weight: 600;
+}
+
+#student-form {
+  #div_id_homeless > div,
+  #div_id_origin > div,
+  #div_id_disabled_person > div,
+  #div_id_social_disadvantage > div {
+    display: inline-flex;
+  }
+
+  :-moz-submit-invalid {
+    box-shadow: none;
+  }
+
+  :-moz-ui-invalid {
+    box-shadow: none;
+  }
+
+  [required] {
+    box-shadow: none;
+  }
+
+  input[type='radio'] + label {
+    padding: 8px 11px;
+    border-radius: 0;
+    background-color: transparent;
+    z-index: 1;
+  }
+
+  .form-group {
+    margin-bottom: 0;
+  }
+
+  .custom-control.custom-radio {
+    display: inline-block;
+    padding: 0;
+  }
+
+  .error-message,
+  .invalid-feedback {
+    color: #E41D37;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 1rem;
+    line-height: 1.25rem;
+    display: flex;
+    margin-top: 5px;
+    font-weight: normal;
+  }
+
+  .invalid-feedback strong {
+    font-weight: normal;
+  }
+
+  .error-field,
+  input[type='radio'].error-field + label,
+  .is-invalid {
+    border-bottom: 2px solid #E41D37;
+  }
+
+  .is-invalid {
+    border-bottom: 2px solid #E41D37;
+    border-top-color: #5B5B5B;
+    border-left-color: #5B5B5B;
+    border-right-color: #5B5B5B;
+    background-image: none;
+  }
+
+  input[type='radio'] + .custom-control-label:after,
+  input[type='radio'] + .custom-control-label:before {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+
+  .custom-control.custom-radio:nth-child(2) .custom-control-label:before,
+  .custom-control.custom-radio:nth-child(2) .custom-control-label:after {
+    border-left: none;
+    border-right: none;
+  }
+
+  .custom-radio .custom-control-label:before {
+    padding: 8px 11px;
+    border-radius: 0;
+    border: 1px solid #5B5B5B;
+    background-image: none;
+  }
+
+  .custom-radio .custom-control-label:after {
+    padding: 8px 11px;
+    border-radius: 0;
+    border: 1px solid #5B5B5B;
+    background-color: transparent;
+    background-image: none;
+  }
+
+  input[type='radio'].custom-control-input ~ .custom-control-label:before,
+  input[type='radio'].custom-control-input ~ .custom-control-label:after {
+    background-color: transparent;
+  }
+
+  input[type='radio'].custom-control-input:hover
+  ~ .custom-control-label:before {
+    background-color: #212529;
+    opacity: .05;
+    color: #212529;
+  }
+
+  input[type='radio'].custom-control-input:hover:checked
+  ~ .custom-control-label {
+    color: #212529;
+  }
+
+  input[type='radio'].custom-control-input:checked
+  ~ .custom-control-label:before {
+    background-color: #008080;
+    border: 1px solid #008080;
+    z-index: -1;
+  }
+
+  input[type='radio'].custom-control-input:checked ~ .custom-control-label {
+    color: #FFFFFF;
+  }
+
+  .custom-radio .custom-control-input:checked ~ .custom-control-label:after {
+    background-color: transparent;
+  }
+
+  select:focus option:first-of-type {
+    display: none;
+  }
+
+  .navoica-logo {
+    max-width: 8.75rem;
+    @media screen and (max-width: 991px) {
+      max-width: 7rem;
+    }
+    @media screen and (max-width: 767px) {
+      max-width: 175px;
+      margin: 0 auto;
+    }
+  }
+
+  .form-buttons {
+    @media screen and (max-width: 767px) {
+      width: 100%;
+    }
+
+    & .btn {
+      @media screen and (max-width: 767px) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+
+  .btn-cancel {
+    border: 1px solid #5B5B5B;
+    background-color: #FFFFFF;
+    color: #212529;
+    height: 34px;
+    padding: 0 50px;
+    @media screen and (max-width: 400px) {
+      padding: 0;
+      width: 100%;
+    }
+  }
+
+  .btn-submit {
+    padding: 4px 50px;
+    @media screen and (max-width: 400px) {
+      padding: 4px 0;
+      width: 100%;
+    }
+  }
+
+  .h4 {
+    color: #008B8B;
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1.625rem;
+    text-transform: uppercase;
+    word-spacing: .04em;
+    font-size: inherit;
+
+    @media screen and (max-width: 991px) {
+      margin-bottom: 30px;
+    }
+  }
+
+  a {
+    color: #008080;
+    border-bottom: 1px solid #008080;
+    padding-bottom: 2px;
+  }
+
+  a:hover {
+    color: #008080;
+    border-bottom: 1px solid #008080;
+    padding-bottom: 2px;
+    text-decoration: none;
+  }
+
+  .asteriskField {
+    color: #E41D37;
+    margin-left: 5px;
+  }
+
+  .btn-primary {
+    background-color: #E41D37;
+    border-color: #E41D37;
+  }
+
+  .btn-primary:hover {
+    background-color: #C3172E;
+    border-color: #B8162B;
+  }
+
+  .btn-primary:not(:disabled):not(.disabled):active {
+    background-color: #B8162B;
+    border-color: #AD1528;
+  }
+
+  .btn-primary:focus {
+    background-color: #C3172E;
+    border-color: #B8162B;
+    box-shadow: 0 0 0 .2rem rgba(91, 91, 91, .1);
+  }
+
+  label {
+    font-weight: 600;
+    word-wrap: normal;
+    width: 100%;
+  }
+
+  label.disabled {
+    opacity: .4;
+  }
+
+  .form-text {
+    font-size: .875rem;
+  }
+
+  form {
+    background-color: #FFFFFF;
+    box-shadow: 0 3px 6px #00000029;
+    padding: 1.875rem;
+
+    @media screen and (max-width: 767px) {
+      padding: 1.85rem .8rem;
+    }
+  }
+
+  #div_id_work_name {
+    margin-bottom: -.5rem;
+  }
+
+  @media (max-width: 1024px) {
+    #div_id_work_name {
+      margin-bottom: -1.7rem;
+    }
+  }
+
+  @media (max-width: 480px) {
+    #div_id_work_name {
+    }
+  }
+
+  .select {
+    position: relative;
+    box-sizing: border-box;
+    appearance: none;
+    background-image: url(../images/arrow-down.svg);
+    background-position: right 12px center;
+    background-repeat: no-repeat;
+    background-size: 14px;
+    right: 0;
+    top: 0;
+  }
+
+  .form-control:focus,
+  .select:focus,
+  .btn-cancel:focus {
+    color: #495057;
+    background-color: #FFFFFF;
+    border-color: #495057;
+    outline: 0;
+    box-shadow: 0 0 0 .2rem rgba(91, 91, 91, .1);
+  }
+}
+
+.container {
+  margin-bottom: 2rem;
+  margin-top: 0;
+}
+
+.socialaccount_providers {
+  padding: 0;
+  a {
+    color: #FFFFFF;
+    background-color: #E41D37;
+    border: 1px solid #E41D37;
+    padding: .5rem 1rem;
+    line-height: 1.6;
+  }
+  a:hover {
+    text-decoration: none;
+    background-color: #C3172E;
+    border-color: #B8162B;
+  }
+  li {
+    list-style: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .video {
+    position: relative;
+    padding-bottom: 56.25%;
+    padding-top: 30px;
+    height: 0;
+    overflow: hidden;
+    iframe,
+    object,
+    embed {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+#div_id_statement1 {
+  margin-bottom: 10px;
+}
+
+.custom-control-label::before, .custom-file-label, .custom-select {
+  transition: none;
+}
+
+.left_colored_border {
+  border-left: 5px solid #008B8B;
+  padding-left: 30px;
+}
+
+.custom-control-label {
+  cursor: pointer;
+}

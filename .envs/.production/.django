@@ -1,0 +1,49 @@
+# General
+# ------------------------------------------------------------------------------
+# DJANGO_READ_DOT_ENV_FILE=True
+DJANGO_SETTINGS_MODULE=config.settings.production
+DJANGO_SECRET_KEY=f09ed0a10f3e91af371e0f05015327c857eae84441794102
+DJANGO_ADMIN_URL=admin/
+DJANGO_ALLOWED_HOSTS=navoica.goluchowski.edu.pl
+DOMAIN=navoica.goluchowski.edu.pl
+NAVOICA_URL=https://navoica.pl
+CERTBOT_EMAIL=mooc@goluchowski.edu.pl
+EMAIL=mooc@goluchowski.edu.pl
+ALLOW_MULTIPLE_REGISTRATION=False
+
+#STATEMENT1_PDF=oswiadczenie.pdf
+#STATEMENT2_PDF=informacja_o_ochronie_danych.pdf
+#STATEMENT1_EN_PDF=
+#STATEMENT2_EN_PDF=
+
+# Security
+# ------------------------------------------------------------------------------
+# TIP: better off using DNS, however, redirect is OK too
+DJANGO_SECURE_SSL_REDIRECT=False
+
+# Email
+# ------------------------------------------------------------------------------
+MAILGUN_API_KEY=
+DJANGO_SERVER_EMAIL=
+MAILGUN_DOMAIN=
+
+# django-compressor
+# ------------------------------------------------------------------------------
+COMPRESS_ENABLED=
+
+# Gunicorn
+# ------------------------------------------------------------------------------
+WEB_CONCURRENCY=4
+
+# Sentry
+# ------------------------------------------------------------------------------
+SENTRY_DSN=https://3ec2192965104f3da05de5c0f1967e07@sentry.navoica.pl/13
+
+
+# Redis
+# ------------------------------------------------------------------------------
+REDIS_URL=redis://redis:6379/0
+
+# Form Name
+FORM_ORGANIZER_NAME=
+

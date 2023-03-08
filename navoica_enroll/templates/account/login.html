@@ -1,0 +1,44 @@
+{% extends "account/base.html" %}
+
+{% load i18n %}
+{% load socialaccount %}
+{% load crispy_forms_tags %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block inner %}
+
+  {% get_providers as socialaccount_providers %}
+
+  {% if socialaccount_providers %}
+
+    <hr>
+
+    <p>{% trans "The course you wish to enroll in has been funded by the European Union and the Polish government. The university which created the course is therefore obliged to register its participants." %}</p>
+   
+    <p>{% trans "You will be redirected to the registration form in a moment, but in order to fill it in, you must have an account on Navoica.pl.All personal data included in the registration form will be gathered and processed by the course organiser - the university." %}</p>
+
+    <hr>
+   
+    <div align="center" class="video">
+      <iframe width="560" height="315" src="https://www.youtube.com/embed/MqTwgAAHJhI" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+    </div>
+
+    <hr>
+
+    <div class="socialaccount_ballot">
+
+      <ul class="socialaccount_providers justify-content-center d-flex">
+        {% include "socialaccount/snippets/provider_list.html" with process="login" %}
+      </ul>
+
+    </div>
+
+    {% include "socialaccount/snippets/login_extra.html" %}
+
+  {% else %}
+    <p>{% blocktrans %}If you have not created an account yet, then please
+      <a href="{{ signup_url }}">sign up</a> first.{% endblocktrans %}</p>
+  {% endif %}
+
+{% endblock %}

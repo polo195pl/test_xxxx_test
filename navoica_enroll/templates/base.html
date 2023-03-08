@@ -1,0 +1,148 @@
+{% load static i18n compress %}<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  <title>{% block title %} {% blocktrans %}Navoica Remote Enrollment for a Course
+  {% endblocktrans %}{% endblock title %}</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="">
+  <meta name="author" content="">
+  <link rel="stylesheet"
+        href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+        integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+        crossorigin="anonymous">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.1/css/all.min.css" integrity="sha512-+4zCK9k+qNFUR5X+cKL9EIR+ZOhtIloNl9GIKS57V1MyNsYpYcUrUeQc9vNfzsWfV28IaLL3i96P9sdNyeRssA==" crossorigin="anonymous" />
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,400;0,600;0,700;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+  <!--[if lt IE 9]>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
+  <![endif]-->
+
+  <link rel="icon" href="{% static 'images/favicons/favicon.ico' %}">
+  <link rel="apple-touch-icon" sizes="180x180" href="{% static 'images/favicons/apple-touch-icon.png' %}">
+  <link rel="icon" type="image/png" sizes="32x32" href="{% static 'images/favicons/favicon-32x32.png' %}">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'images/favicons/favicon-16x16.png' %}">
+  <link rel="manifest" href="{% static 'images/favicons/site.webmanifest' %}">
+  <link rel="mask-icon" href="{% static 'images/favicons/safari-pinned-tab.svg" color="#5bbad5' %}">
+  <meta name="msapplication-TileColor" content="#da532c">
+  <meta name="theme-color" content="#ffffff">
+
+  {% block css %}
+
+
+    <!-- Your stuff: Third-party CSS libraries go here -->
+    {% compress css %}
+      <!-- This file stores project-specific CSS -->
+
+      <link href="{% static 'css/project.css' %}" rel="stylesheet">
+
+    {% endcompress %}
+  {% endblock %}
+
+</head>
+
+<body>
+<header class="register-course__header">
+  <div class="container d-flex flex-row justify-content-between align-items-center">
+    <div class="header__course d-flex flex-column py-3">
+      <span class="header__course-owner-name mb-1">{{ settings.FORM_ORGANIZER_NAME }}</span>
+      <span class="header__course-title">{% trans 'Registration form' %}</span>
+    </div>
+
+    <form action="{% url 'set_language' %}" method="post" class="d-none js-submit-set-language">{% csrf_token %}
+      <input name="next" type="hidden" value="{{ redirect_to }}">
+      <select name="language" class="js-set-language">
+        {% get_current_language as LANGUAGE_CODE %}
+        {% get_available_languages as LANGUAGES %}
+        {% get_language_info_list for LANGUAGES as languages %}
+        {% for language in languages %}
+          {{ language.code }}
+          <option value="{{ language.code }}"{% if language.code == LANGUAGE_CODE %} selected{% endif %}>
+            {{ language.name_local }} ({{ language.code }})
+          </option>
+        {% endfor %}
+      </select>
+      <input type="submit" value="Go">
+    </form>
+
+    <div class="dropdown dropdown__language py-2 align-self-end">
+      <button class="btn dropdown-toggle" type="button" id="dropdownLang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-globe-americas"></i><span class="js-current-language ml-2"></span>
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownLang">
+        <button class="dropdown-item js-change-language" data-lang="pl" type="button">Polski</button>
+        <button class="dropdown-item js-change-language" data-lang="en" type="button">English</button>
+      </div>
+    </div>
+  </div>
+</header>
+
+<div class="container mt-4">
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert {% if message.tags %}alert-{{ message.tags }}{% endif %}" role="alert">{{ message }}
+        <button type="button" class="close" data-dismiss="alert"
+                aria-label="Close"><span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+    {% endfor %}
+  {% endif %}
+
+  <div class="d-flex flex-wrap py-3 partners-logo">
+    <img src="{% static 'images/logo_FE_Wiedza_Edukacja_Rozwoj.png' %}" alt="{% trans "Logo of Knowledge Education Development" %}" width="222" height="91" />
+    <img src="{% static 'images/znak_barw_rp_poziom_bez_ramki_rgb.png' %}" alt="{% trans "Logo of The Republic of Poland" %}" width="300" height="100" />
+    <img src="{% static 'images/EU_EFS.png' %}" alt="{% trans "Logo of European Social Fund" %}" width="352" height="84" />
+  </div>
+  <hr />
+
+  {% block content %}
+    <div class="text-center"><br/><br/>
+      <img width="200" src="{% static 'images/logo-light-bg.svg' %}" alt="Logo"><br/><br/>
+      <h1>{% trans "Registration form for users of courses implemented with co-financing from the ESF, NCBR funds" %}</h1>
+    </div>
+  {% endblock content %}
+  <footer>
+    <p class="footer-copyright text-muted text-center mt-3"><small>&copy; Copyright 2018
+      <script>new Date().getFullYear() > 2010 && document.write("-" + new Date().getFullYear());</script>
+      Navoica.pl | ver.{{ settings.PLATFORM_VERSION }}</small></p>
+  </footer>
+
+  <div class="d-flex flex-wrap py-3 partners-logo">
+    <img src="{% static 'images/logo_FE_Wiedza_Edukacja_Rozwoj.png' %}" alt="{% trans "Logo of Knowledge Education Development" %}" width="222" height="91" />
+    <img src="{% static 'images/znak_barw_rp_poziom_bez_ramki_rgb.png' %}" alt="{% trans "Logo of The Republic of Poland" %}" width="300" height="100" />
+    <img src="{% static 'images/EU_EFS.png' %}" alt="{% trans "Logo of European Social Fund" %}" width="352" height="84" />
+  </div>
+
+</div> <!-- /container -->
+
+{% block modal %}{% endblock modal %}
+
+<!-- Le javascript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<!-- Bootstrap JS and its dependencies-->
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+{% compress js %}
+  <script src="{% static 'js/project.js' %}"></script>
+{% endcompress %}
+{% block javascript %}
+  <!-- Your stuff: Third-party javascript libraries go here -->
+
+  <!-- place project specific Javascript in this file -->
+
+{% endblock javascript %}
+</body>
+</html>
+
